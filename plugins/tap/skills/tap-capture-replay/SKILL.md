@@ -39,6 +39,12 @@ chore the user will do again next week is Tap's bullseye.
    `site+name` saves the compiled plan to
    `~/.tap/plans/<site>/<name>.plan.json` for unlimited replay. AI participates
    **only at capture time**; replay is pure data + dispatch, zero tokens.
+   - **Login-gated or multi-step forms → drive a LIVE session, don't one-shot it.**
+     `capture { url, live:true }` binds a tab and returns `live_session`; then
+     `digest` surveys the page (every interactive element as a ready-made target),
+     `op`/`ops` dispatch one step at a time with ~1s feedback, and `freeze` is the
+     single gate that materializes the successful ops into the saved plan. This is
+     the reliable path when a blind `capture` would guess selectors wrong.
 3. **Replay**: `run({ ref, args })`. To confirm a tap hasn't broken from a site
    redesign before running it, `verify` first (read-only; runs no write ops).
 

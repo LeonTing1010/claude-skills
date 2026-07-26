@@ -1,0 +1,26 @@
+name: validate-plugins
+
+# taprun has no build step: its "release" is a push to main, which Claude Code
+# then pulls for every user. This workflow is the ONLY gate on that release path
+# — it runs the portability/consistency guard on every push and PR so a
+# machine-local path or a broken manifest can never reach an installer.
+# (Regression this exists for: 2026-07-24 e273ade shipped an absolute
+# /opt/homebrew/bin/tap command in .mcp.json — see scripts/validate-plugins.mjs.)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate plugin marketplace manifests
+        run: node scripts/validate-plugins.mjs
