@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: LeonTing1010
-  version: '1.0.0'
+  version: '1.1.0'
 ---
 
 # Tap: record once, replay forever at zero tokens

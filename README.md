@@ -152,15 +152,33 @@ taprun/
 ├── plugins/
 │   └── tap/                            the product plugin
 │       ├── .claude-plugin/plugin.json
-│       ├── .mcp.json                   MCP server (npx @taprun/cli mcp stdio)
+│       ├── .mcp.json                   MCP server (npx -y @taprun/cli mcp stdio)
 │       ├── hooks/                      WebFetch → tap routing hook
 │       └── skills/{tap-capture-replay, tap-setup, tap-triggers}/SKILL.md
+├── scripts/validate-plugins.mjs        release-gate guard (portable manifests)
+├── .github/workflows/validate.yml      runs the guard on every push/PR to main
 ├── LICENSE
 └── README.md
 ```
 
 The product engine (`@taprun/cli`, the Chrome extension, the plan format) lives
 elsewhere; this repo is only the Claude Code distribution glue.
+
+## Validation
+
+This repo has no build step — a push to `main` **is** the release (Claude Code
+pulls `main` for every user). The one gate on that path is a zero-dependency
+guard that keeps the distributed manifests portable and consistent:
+
+```bash
+node scripts/validate-plugins.mjs
+```
+
+It fails the build if a plugin's MCP `command` is a machine-local absolute path
+instead of the canonical `npx -y @taprun/cli mcp stdio`, if any manifest leaks a
+local filesystem path, if a hook script is missing / non-executable, or if a
+skill's frontmatter `name` drifts from its directory. `.github/workflows/validate.yml`
+runs it on every push and PR to `main`. Run it locally before pushing.
 
 ## License
 
