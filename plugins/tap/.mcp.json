@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "tap": {
-      "command": "/opt/homebrew/bin/tap",
-      "args": ["mcp", "stdio"]
+      "command": "npx",
+      "args": ["-y", "@taprun/cli", "mcp", "stdio"]
     }
   }
 }
