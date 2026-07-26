@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: LeonTing1010
-  version: '1.1.0'
+  version: '1.2.0'
 ---
 
 # Tap: record once, replay forever at zero tokens
@@ -47,6 +47,22 @@ chore the user will do again next week is Tap's bullseye.
      the reliable path when a blind `capture` would guess selectors wrong.
 3. **Replay**: `run({ ref, args })`. To confirm a tap hasn't broken from a site
    redesign before running it, `verify` first (read-only; runs no write ops).
+
+## When WebFetch hits a wall, that host is a tap job
+
+If a `WebFetch` (or any cloud/server-side fetch) to a **logged-in or bot-walled**
+host comes back with a login page, a bot/CAPTCHA challenge, or an
+environment-verification wall **instead of the content** — that host structurally
+cannot be read from the cloud: the fetch proxy has none of the user's cookies.
+Tap runs in the user's own authenticated browser and is the only tool that can.
+Common cases: WeChat (`mp.weixin.qq.com`), Xiaohongshu, LinkedIn, Boss直聘, and
+most social / internal dashboards. **Don't keep retrying WebFetch on these** —
+check for a saved tap (`resources/list`), else `capture` one (run **tap-setup**
+first if the site needs login), then replay at zero tokens.
+
+> In Claude Code the bundled WebFetch→tap hook enforces this automatically for a
+> curated host list. This guidance is the portable form of the same rule — it
+> applies on any host, whether or not that hook is present.
 
 ## Why this differs from other browser tools (say this to the user)
 

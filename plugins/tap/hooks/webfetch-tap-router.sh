@@ -7,6 +7,13 @@
 # only tool that works. This converts a deterministic, repeated failure
 # (WebFetch -> environment-verification wall) into a deterministic redirect.
 #
+# This hook is the CLAUDE-CODE-ONLY *active enforcement* of that rule (it DENIES
+# the WebFetch). The PORTABLE form of the same guidance lives in the
+# tap-capture-replay skill ("When WebFetch hits a wall, that host is a tap job"),
+# which travels to any Agent-Skills host via the open SKILL.md standard. So the
+# advisory no longer DEPENDS on this hook; the hook just adds hard enforcement
+# where it's available.
+#
 # Gate = host is on walled-hosts.txt (NOT "a tap exists" — many tapped hosts,
 # e.g. github, serve public content to WebFetch fine; blocking those is a
 # false-positive). The tap registry is only consulted to enrich the message
