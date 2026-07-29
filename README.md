@@ -107,7 +107,7 @@ transmits credentials.
 1. **Check first, don't rebuild.** `resources/list` — a matching saved tap runs
    with `run({ ref, args })`.
 2. **Capture once.** `capture { url, intent, site, name }` compiles a plan to
-   `~/.tap/plans/<site>/<name>.plan.json`. AI runs only here.
+   `~/.tap/flows/<site>/<name>.flow.json`. AI runs only here.
 3. **Replay forever.** `run({ ref, args })` — deterministic, zero tokens. Use
    `verify` first to confirm the tap hasn't broken from a site redesign.
 

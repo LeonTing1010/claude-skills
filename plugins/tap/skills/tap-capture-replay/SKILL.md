@@ -37,7 +37,7 @@ chore the user will do again next week is Tap's bullseye.
    for the arg schema, then `run({ ref: "{site}/{name}", args })` to execute.
 2. **If none exists, capture**: `capture { url, intent, site, name }`. Passing
    `site+name` saves the compiled plan to
-   `~/.tap/plans/<site>/<name>.plan.json` for unlimited replay. AI participates
+   `~/.tap/flows/<site>/<name>.flow.json` for unlimited replay. AI participates
    **only at capture time**; replay is pure data + dispatch, zero tokens.
    - **Login-gated or multi-step forms → drive a LIVE session, don't one-shot it.**
      `capture { url, live:true }` binds a tab and returns `live_session`; then

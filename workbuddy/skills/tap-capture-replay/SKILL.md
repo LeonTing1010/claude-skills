@@ -28,7 +28,7 @@ platforms: [macos, windows]
 ## 三步流程
 
 1. **先查注册表**：`resources/list`——已保存的 tap 就是 Resources（`tap://{site}/{name}`）。若有匹配的，不要重建；用 `resources/read` 看参数 schema，然后 `run({ ref: "{site}/{name}", args })` 执行。
-2. **若无，则 capture**：`capture { url, intent, site, name }`。传入 `site+name` 会把编译好的 plan 存到 `~/.tap/plans/<site>/<name>.plan.json`，可无限次重放。AI **只在 capture 时参与**；重放是纯数据 + 分发，零 token。
+2. **若无，则 capture**：`capture { url, intent, site, name }`。传入 `site+name` 会把编译好的 plan 存到 `~/.tap/flows/<site>/<name>.flow.json`，可无限次重放。AI **只在 capture 时参与**；重放是纯数据 + 分发，零 token。
 3. **重放**：`run({ ref, args })`。运行前若想确认 tap 没因网站改版而失效，先 `verify`（只读，不执行任何写操作）。
 
 ## 为什么和其他浏览器工具不同（可以这样对用户说）
