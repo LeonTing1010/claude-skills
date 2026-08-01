@@ -1,12 +1,12 @@
 {
   "hooks": {
-    "PreToolUse": [
+    "PostToolUse": [
       {
         "matcher": "WebFetch",
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/webfetch-tap-router.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/webfetch-wall-sensor.sh"
           }
         ]
       }

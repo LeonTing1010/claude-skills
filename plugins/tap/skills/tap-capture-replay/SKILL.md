@@ -8,7 +8,12 @@ description: >-
   every day/week"; capturing a login-gated admin panel or dashboard; regularly
   posting / checking / exporting on an authenticated page; any repeated browser
   chore the user will do again. Also triggers when the user asks "can this be
-  automated?" or "can I avoid paying tokens every time?".
+  automated?" or "can I avoid paying tokens every time?". ALSO TRIGGERS THE
+  MOMENT A FETCH COMES BACK WRONG: a WebFetch or any cloud/server-side fetch
+  that returns a login page, a CAPTCHA or bot/environment-verification
+  challenge, a "please enable JavaScript" shell, or suspiciously empty content
+  on a site that normally requires login — load this skill then, before
+  treating that response as the page's real content.
 license: MIT
 metadata:
   author: LeonTing1010
@@ -60,9 +65,25 @@ most social / internal dashboards. **Don't keep retrying WebFetch on these** —
 check for a saved tap (`resources/list`), else `capture` one (run **tap-setup**
 first if the site needs login), then replay at zero tokens.
 
-> In Claude Code the bundled WebFetch→tap hook enforces this automatically for a
-> curated host list. This guidance is the portable form of the same rule — it
-> applies on any host, whether or not that hook is present.
+**The danger is not a failed fetch — it is a fetch that LOOKS like it worked.**
+An auth wall answers with HTTP 200 and a full page of real HTML. Summarising
+that page reports the wall as if it were the article: a silent wrong answer, not
+a visible error. So when a fetch comes back thin, odd, or login-shaped, verify
+what you actually got *before* using it.
+
+**What to do (this section is the single authoritative procedure — the bundled
+hook only points here, it does not repeat these steps):**
+1. `resources/list` — is there already a saved tap for this host? If yes, replay
+   it with the tap MCP server's `run` tool.
+2. If not, `capture` one. If the site needs login, run the **tap-setup** skill
+   first.
+3. Replay from then on at zero tokens.
+
+> In Claude Code a bundled `PostToolUse` hook watches WebFetch responses and
+> flags likely walls as they happen (it predicts nothing and keeps no host
+> list — it reads the response body, which is the only real evidence). That hook
+> is an accelerator, not the rule: this section is the rule, and it applies on
+> any Agent-Skills host whether or not the hook is present.
 
 ## Why this differs from other browser tools (say this to the user)
 
