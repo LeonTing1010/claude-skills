@@ -1,9 +1,9 @@
 ---
-name: tap-triggers
+name: triggers
 description: Declare WHEN a saved tap runs unattended — ~/.tap/triggers/ trigger.json declarations compiled idempotently into launchd plists (dev.taprun.trigger.* namespace), zero LLM tokens per fire. Foreground-gated plans (trusted:true) are refused at declaration time. Use when the user wants a tap to run on a schedule / on file change ("run this tap every day", "check back on a schedule", "schedule this tap", "put this on launchd", "tap trigger"). NOT for Claude Code routines/cron (those wake an agent and burn tokens per fire) — this is the zero-token trigger layer for already-compiled plans.
 ---
 
-# tap-triggers — the trigger layer above plans
+# triggers — the trigger layer above plans
 
 ## What this is (and the one-sentence why)
 

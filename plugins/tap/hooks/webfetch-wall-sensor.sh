@@ -14,7 +14,7 @@
 #
 #   2. It DUPLICATED the routing instructions. The shell script inlined "capture
 #      one via mcp__tap__capture / mcp__plugin_tap_tap__capture…" while the SAME
-#      guidance lived in tap-capture-replay/SKILL.md. One fact, two authoritative
+#      guidance lived in capture-replay/SKILL.md. One fact, two authoritative
 #      places — so an MCP tool rename meant editing both (the old script's
 #      "whichever tap server is connected" hedge was that rot showing).
 #
@@ -34,7 +34,7 @@
 # here blocks.
 #
 # ROUTING GUIDANCE IS NOT INLINED HERE. This hook names the skill and stops.
-# tap-capture-replay/SKILL.md §"When WebFetch hits a wall" is the single
+# capture-replay/SKILL.md §"When WebFetch hits a wall" is the single
 # authoritative place for what to actually do — portable to any Agent-Skills
 # host, versioned, and updated in exactly one file when tool names change.
 #
@@ -88,7 +88,7 @@ fi
 ctx="WebFetch 从 ${host} 取回的很可能是一堵墙、不是正文（命中：${hit}）。\
 登录墙会返回 HTTP 200 + 一整页真 HTML —— 不要把它当成内容总结出去。\
 先确认这次拿到的到底是不是要的正文；确实是墙的话，这个 host 归 tap（它跑在你自己的登录态浏览器里）。\
-具体怎么做见 tap-capture-replay skill 的 §When WebFetch hits a wall —— 用 Skill 工具加载它，别凭记忆操作。"
+具体怎么做见 capture-replay skill 的 §When WebFetch hits a wall —— 用 Skill 工具加载它，别凭记忆操作。"
 
 jq -n --arg c "$ctx" '{
   hookSpecificOutput: {

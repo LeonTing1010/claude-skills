@@ -1,7 +1,7 @@
 {
   "name": "tap",
   "version": "0.1.0",
-  "description": "Local-first authenticated browser automation — the Tap MCP server + the tap-capture-replay, tap-setup & tap-triggers skills + a WebFetch→tap routing hook, bundled. Record a repeated logged-in browser task once; replay it forever in your own Chrome as a deterministic program at zero LLM tokens. Credentials never leave your machine; the AI runs only at capture time.",
+  "description": "Local-first authenticated browser automation — the Tap MCP server + the capture-replay, setup & triggers skills + a WebFetch→tap routing hook, bundled. Record a repeated logged-in browser task once; replay it forever in your own Chrome as a deterministic program at zero LLM tokens. Credentials never leave your machine; the AI runs only at capture time.",
   "author": {
     "name": "LeonTing1010"
   }

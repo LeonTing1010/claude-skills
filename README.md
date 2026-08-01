@@ -65,7 +65,7 @@ After restarting, `/mcp` shows `tap ✓ Connected` with the 4 verbs.
 
 Two CodeBuddy-specific notes:
 - Skills surface as slash commands **without** the plugin namespace
-  (`/tap-setup`, `/tap-capture-replay`, `/tap-triggers`).
+  (`/setup`, `/capture-replay`, `/triggers`).
 - The WebFetch→tap routing hook works unchanged — CodeBuddy's fetch tool
   answers to the same `WebFetch` matcher.
 
@@ -82,7 +82,7 @@ Two CodeBuddy-specific notes:
 
 To reuse your authenticated session (bank / internal dashboard / social), the
 Chrome extension needs a stable local binary via a native-messaging bridge. Just
-tell the agent *"set up tap for this logged-in site"* — the **tap-setup** skill
+tell the agent *"set up tap for this logged-in site"* — the **setup** skill
 drives it, diagnosing with `tap embed --verify` and fixing only what's missing.
 
 It registers the Chrome bridge — materializing the stable local binary from the
@@ -97,9 +97,9 @@ transmits credentials.
 | Component | What it does |
 |---|---|
 | **Tap MCP server** | 4 meta verbs — `capture` / `verify` / `mark` / `run` — plus your saved taps exposed as MCP resources (`tap://{site}/{name}`). Runs via `npx @taprun/cli mcp stdio`. |
-| **tap-capture-replay** skill | Teaches the agent to reach for Tap when a browser task is *repeated* and *logged-in* — record once, replay at zero tokens. |
-| **tap-setup** skill | Adaptive, diagnose-first setup for logged-in sites (`tap embed --verify` → fix only what's missing). |
-| **tap-triggers** skill | Declare *when* a saved tap runs unattended — `~/.tap/triggers/*.trigger.json` compiled into launchd jobs, zero tokens per fire. |
+| **capture-replay** skill | Teaches the agent to reach for Tap when a browser task is *repeated* and *logged-in* — record once, replay at zero tokens. |
+| **setup** skill | Adaptive, diagnose-first setup for logged-in sites (`tap embed --verify` → fix only what's missing). |
+| **triggers** skill | Declare *when* a saved tap runs unattended — `~/.tap/triggers/*.trigger.json` compiled into launchd jobs, zero tokens per fire. |
 | **WebFetch → tap routing hook** | On auth/bot-walled hosts where a cloud fetch can't see logged-in content, redirects the agent to Tap instead of hitting the wall. |
 
 ## How it works
@@ -154,7 +154,7 @@ taprun/
 │       ├── .claude-plugin/plugin.json
 │       ├── .mcp.json                   MCP server (npx -y @taprun/cli mcp stdio)
 │       ├── hooks/                      WebFetch → tap routing hook
-│       └── skills/{tap-capture-replay, tap-setup, tap-triggers}/SKILL.md
+│       └── skills/{capture-replay, setup, triggers}/SKILL.md
 ├── scripts/validate-plugins.mjs        release-gate guard (portable manifests)
 ├── .github/workflows/validate.yml      runs the guard on every push/PR to main
 ├── LICENSE

@@ -1,5 +1,5 @@
 ---
-name: tap-capture-replay
+name: capture-replay
 description: >-
   When a browser task is REPEATED and runs on a LOGGED-IN / authenticated site,
   use Tap to record it once (capture), then replay it every time as a
@@ -62,7 +62,7 @@ cannot be read from the cloud: the fetch proxy has none of the user's cookies.
 Tap runs in the user's own authenticated browser and is the only tool that can.
 Common cases: WeChat (`mp.weixin.qq.com`), Xiaohongshu, LinkedIn, Boss直聘, and
 most social / internal dashboards. **Don't keep retrying WebFetch on these** —
-check for a saved tap (`resources/list`), else `capture` one (run **tap-setup**
+check for a saved tap (`resources/list`), else `capture` one (run **setup**
 first if the site needs login), then replay at zero tokens.
 
 **The danger is not a failed fetch — it is a fetch that LOOKS like it worked.**
@@ -75,7 +75,7 @@ what you actually got *before* using it.
 hook only points here, it does not repeat these steps):**
 1. `resources/list` — is there already a saved tap for this host? If yes, replay
    it with the tap MCP server's `run` tool.
-2. If not, `capture` one. If the site needs login, run the **tap-setup** skill
+2. If not, `capture` one. If the site needs login, run the **setup** skill
    first.
 3. Replay from then on at zero tokens.
 
@@ -112,7 +112,7 @@ zero cost"**.
 
 Public pages / open APIs work as soon as the plugin is installed. Logged-in
 sites (bank / internal admin / social) need the user's real browser session:
-trigger the **tap-setup** skill once (the user says "set up tap"; it registers
+trigger the **setup** skill once (the user says "set up tap"; it registers
 the Chrome bridge from the engine npx already downloaded and opens the extension
 page), then click **Add to Chrome** in the store and grant the permission. Authentication rides entirely on the browser's
 existing session; Tap never asks for or transmits credentials.

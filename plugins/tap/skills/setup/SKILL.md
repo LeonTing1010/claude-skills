@@ -1,5 +1,5 @@
 ---
-name: tap-setup
+name: setup
 description: >-
   Adaptively prepare Tap for LOGGED-IN / authenticated websites — not by running
   a script blind, but by diagnosing first, fixing only the missing rung, passing
