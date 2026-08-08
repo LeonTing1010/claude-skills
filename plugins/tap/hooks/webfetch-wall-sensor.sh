@@ -80,15 +80,15 @@ done
 if [ -z "$hit" ]; then
   len="$(printf '%s' "$body" | wc -c | tr -d ' ')"
   case "$len" in ''|*[!0-9]*) exit 0 ;; esac
-  [ "$len" -lt 200 ] && hit="内容过短（${len} 字节）"
+  [ "$len" -lt 200 ] && hit="body too short (${len} bytes)"
 fi
 
 [ -n "$hit" ] || exit 0
 
-ctx="WebFetch 从 ${host} 取回的很可能是一堵墙、不是正文（命中：${hit}）。\
-登录墙会返回 HTTP 200 + 一整页真 HTML —— 不要把它当成内容总结出去。\
-先确认这次拿到的到底是不是要的正文；确实是墙的话，这个 host 归 tap（它跑在你自己的登录态浏览器里）。\
-具体怎么做见 capture-replay skill 的 §When WebFetch hits a wall —— 用 Skill 工具加载它，别凭记忆操作。"
+ctx="What WebFetch returned from ${host} is very likely a wall, not the content (matched: ${hit}). \
+An auth wall answers with HTTP 200 and a full page of real HTML — do not summarise it as if it were the article. \
+Confirm what you actually got before using it; if it is a wall, this host belongs to tap (it runs in your own logged-in browser). \
+For what to do, see the capture-replay skill, section \"When WebFetch hits a wall\" — load it with the Skill tool, do not act from memory."
 
 jq -n --arg c "$ctx" '{
   hookSpecificOutput: {

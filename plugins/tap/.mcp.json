@@ -1,9 +1,8 @@
 {
   "mcpServers": {
     "tap": {
-      "command": "/opt/homebrew/bin/tap",
-      "args": ["mcp", "stdio"],
-      "_note": "2026-08-03: repointed from `npx -y @taprun/cli` to the locally built binary so the MCP server serves the premise-specificity-axis build before it ships to npm. Discriminator: serverInfo.version — npm build answers 0.2.0 (old hardcode), local build answers its real version. Revert to npx after the next npm publish."
+      "command": "npx",
+      "args": ["-y", "@taprun/cli", "mcp", "stdio"]
     }
   }
 }

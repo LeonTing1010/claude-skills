@@ -60,7 +60,8 @@ host comes back with a login page, a bot/CAPTCHA challenge, or an
 environment-verification wall **instead of the content** — that host structurally
 cannot be read from the cloud: the fetch proxy has none of the user's cookies.
 Tap runs in the user's own authenticated browser and is the only tool that can.
-Common cases: WeChat (`mp.weixin.qq.com`), Xiaohongshu, LinkedIn, Boss直聘, and
+Common cases: WeChat (`mp.weixin.qq.com`), Xiaohongshu (`xiaohongshu.com`),
+LinkedIn, Boss Zhipin (`zhipin.com`), and
 most social / internal dashboards. **Don't keep retrying WebFetch on these** —
 check for a saved tap (`resources/list`), else `capture` one (run **setup**
 first if the site needs login), then replay at zero tokens.
