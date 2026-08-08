@@ -60,11 +60,13 @@ host comes back with a login page, a bot/CAPTCHA challenge, or an
 environment-verification wall **instead of the content** — that host structurally
 cannot be read from the cloud: the fetch proxy has none of the user's cookies.
 Tap runs in the user's own authenticated browser and is the only tool that can.
-Common cases: WeChat (`mp.weixin.qq.com`), Xiaohongshu (`xiaohongshu.com`),
-LinkedIn, Boss Zhipin (`zhipin.com`), and
-most social / internal dashboards. **Don't keep retrying WebFetch on these** —
-check for a saved tap (`resources/list`), else `capture` one (run **setup**
-first if the site needs login), then replay at zero tokens.
+**Judge this from the response you got back, never from a list of hosts** — a
+host list is a prior about the outside world that nobody ever re-checks, so it
+rots in both directions (a site that stopped walling stays blocked; one that
+started walling is never noticed). Social feeds and internal dashboards are
+simply where it happens most. **Don't keep retrying WebFetch once you've seen a
+wall** — check for a saved tap (`resources/list`), else `capture` one (run
+**setup** first if the site needs login), then replay at zero tokens.
 
 **The danger is not a failed fetch — it is a fetch that LOOKS like it worked.**
 An auth wall answers with HTTP 200 and a full page of real HTML. Summarising
